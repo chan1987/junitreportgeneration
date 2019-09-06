@@ -9,13 +9,13 @@ pipeline {
         }
         stage("build") {
             steps {
-                sh 'mvn -Dmaven.test.skip=true surefire-report:report'
+                sh 'mvn clean install -Dmaven.test.skip=true surefire-report:report'
             }
         }
     }
     post {
         always {
-            archive "target/**/*"
+            archiveArtifacts "target/**/*"
             junit 'target/surefire-reports/*.xml'
             
             echo 'This will always run mailing'  
