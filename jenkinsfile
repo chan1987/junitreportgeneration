@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                sh '-Dmaven.test.skip=true surefire-report:report'
+                sh 'mvn -Dmaven.test.skip=true surefire-report:report'
             }
         }
     }
