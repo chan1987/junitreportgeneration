@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class MyUtils {
 
 	public static int add(int x, int y) {
-		return x-y;
+		return x+y;
 	}
 	
 	public static String reverse(String input) {

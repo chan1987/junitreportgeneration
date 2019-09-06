@@ -1,6 +1,12 @@
 pipeline {
     agent any
     stages {
+        stage("Test") {
+            steps {
+                sh 'cd /var/lib/jenkins/workspace/junitreportgeneration/target/surefire-reports/
+                touch *.xml'
+            }
+        }
         stage("build") {
             steps {
                 sh 'mvn -Dmaven.test.skip=true surefire-report:report'

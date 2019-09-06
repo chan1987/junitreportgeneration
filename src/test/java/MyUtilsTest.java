@@ -28,7 +28,7 @@ public class MyUtilsTest {
 
 	 @Test
 	 public void test_add() {
-		assertEquals(10, MyUtils.add(7, 8));
+		assertEquals(10, MyUtils.add(5, 5));
 	}
 
 	 @Test
