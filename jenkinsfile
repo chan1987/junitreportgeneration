@@ -9,7 +9,7 @@ pipeline {
         }
         stage("build") {
             steps {
-                sh 'clean install -Dmaven.test.skip=true surefire-report:report'
+                sh '-Dmaven.test.skip=true surefire-report:report'
             }
         }
     }
