@@ -15,12 +15,13 @@ pipeline {
             steps {
 				slackSend channel: 'junittesting', message: 'Building'
                  sh  'mvn -Dmaven.test.skip=true surefire-report:report'
+				 sh  'sudo cp /var/lib/jenkins/workspace/junitreportgeneration/target/site/surefire-report.html /var/lib/jenkins/workspace/junitreportgeneration/'
             }
 		}
 		stage("Slack notification") {
 			steps {
 				slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#junittesting', color: 'good', message: 'Jenkins Build Completed', teamDomain: 'a1devopsconsulting', tokenCredentialId: 'slackunit', username: 'Chandrakanth'
-				slackUploadFile channel: '#junittesting', credentialId: 'slackunit', filePath: '/var/lib/jenkins/workspace/junitreportgeneration/target/site/surefire-report.html', initialComment: 'Test Reports'
+				slackUploadFile channel: '#junittesting', credentialId: 'slackunit', filePath: 'surefire-report.html', initialComment: 'Test Reports'
 			}
 		
 		}
