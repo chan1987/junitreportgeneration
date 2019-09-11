@@ -4,6 +4,7 @@ pipeline {
         stage("Test") {
 			steps {
 				
+				slackSend channel: 'junittesting', message: 'Starting'
 				sh 'mvn surefire:test surefire-report:report'
 				
 				//sh  'cd /var/lib/jenkins/workspace/junitreportgeneration/target/surefire-reports'
@@ -12,6 +13,7 @@ pipeline {
 		}
         stage("build") {
             steps {
+				slackSend channel: 'junittesting', message: 'Building'
                  sh  'mvn -Dmaven.test.skip=true surefire-report:report'
             }
         }
@@ -20,7 +22,7 @@ pipeline {
         always {
             archiveArtifacts "target/**/*"
             junit '**/surefire-reports/*.xml' 
-
+			slackUploadFile filePath: '\\target\\site\\surefire-report.html', initialComment: 'report'
          }  
         }	
 }
