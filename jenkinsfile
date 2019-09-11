@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage("Test") {
 			steps {
-				
-				 slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+				code = load 'notifyslack.groovy'
+				code.call
+				// slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
 				sh 'mvn surefire:test surefire-report:report'
 				
 				//sh  'cd /var/lib/jenkins/workspace/junitreportgeneration/target/surefire-reports'
@@ -13,7 +14,7 @@ pipeline {
 		}
         stage("build") {
             steps {
-				slackSend channel: 'junittesting', message: 'Build Phase running'
+				//slackSend channel: 'junittesting', message: 'Build Phase running'
                  sh  'mvn -Dmaven.test.skip=true surefire-report:report'
 				 sh  'sudo cp /var/lib/jenkins/workspace/junitreportgeneration/target/site/surefire-report.html /var/lib/jenkins/workspace/junitreportgeneration/surefire-report.html'
 				 sh  'sudo chmod 777 /var/lib/jenkins/workspace/junitreportgeneration/surefire-report.html'
@@ -22,9 +23,9 @@ pipeline {
 		}
 		stage("Slack notification") {
 			steps {
-				slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-				slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#junittesting', color: 'good', message: 'Jenkins Build Completed', teamDomain: 'a1devopsconsulting', tokenCredentialId: 'slackunit', username: 'Chandrakanth'
-				slackUploadFile channel: '#junittesting', credentialId: 'slackunit', filePath: '*.html', initialComment: 'Test Reports'
+				
+				//slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#junittesting', color: 'good', message: 'Jenkins Build Completed', teamDomain: 'a1devopsconsulting', tokenCredentialId: 'slackunit', username: 'Chandrakanth'
+				
 			}
 		
 		}
@@ -33,7 +34,9 @@ pipeline {
     post {
         success {
             archiveArtifacts "target/**/*"
-            junit '**/surefire-reports/*.xml' 
+            junit '**/surefire-reports/*.xml'
+			slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+			slackUploadFile channel: '#junittesting', credentialId: 'slackunit', filePath: '*.html', initialComment: 'Test Reports'
          }  
 		 failure {
 			  slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")

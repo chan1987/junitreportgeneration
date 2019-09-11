@@ -8,11 +8,11 @@ import net.sf.json.JSONObject;
 import hudson.tasks.test.AbstractTestResultAction;
 import hudson.model.Actionable;
 
-def call(String buildStatus = 'STARTED', String channel = '#jenkins') {
+def call(String buildStatus = 'STARTED', String channel = '#junittesting') {
 
   // buildStatus of null means successfull
   buildStatus = buildStatus ?: 'SUCCESSFUL'
-  channel = channel ?: '#jenkins'
+  channel = channel ?: '#junittesting'
 
 
   // Default values
@@ -69,8 +69,8 @@ def call(String buildStatus = 'STARTED', String channel = '#jenkins') {
   println testSummary.toString()
 
   JSONObject attachment = new JSONObject();
-  attachment.put('author',"jenkins");
-  attachment.put('author_link',"https://danielschaaff.com");
+  attachment.put('author',"junittesting");
+  attachment.put('author_link',"https://chandrakanth.com");
   attachment.put('title', title.toString());
   attachment.put('title_link',title_link.toString());
   attachment.put('text', subject.toString());
