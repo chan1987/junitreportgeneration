@@ -19,7 +19,7 @@ pipeline {
 		}
 		stage("Slack notification") {
 			steps {
-				slackSend channel: 'junittesting general', color: 'Good', message: 'Welcome to jenkins Slack', teamDomain: 'junittesting', tokenCredentialId: 'jenkins-slack-integration'
+				slackSend channel: 'junittesting', color: 'Good', message: 'Build Completed on jenkins Slack-Msg', teamDomain: 'junittesting', tokenCredentialId: 'jenkins-slack-integration'
 			}
 		
 		}
