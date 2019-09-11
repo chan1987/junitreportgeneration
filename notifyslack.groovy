@@ -10,6 +10,7 @@ import hudson.model.Actionable;
 
 def call(String buildStatus = 'STARTED', String channel = '#junittesting') {
 
+
   // buildStatus of null means successfull
   buildStatus = buildStatus ?: 'SUCCESSFUL'
   channel = channel ?: '#junittesting'
@@ -106,3 +107,4 @@ def call(String buildStatus = 'STARTED', String channel = '#junittesting') {
   slackSend (color: colorCode, message: subject, attachments: attachments.toString(), channel: channel)
 
 }
+return this;
