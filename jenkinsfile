@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage("Test") {
 			steps {
-				sh  'mvn install surefire-report:report'
+				sh  'echo "Do nothing" '
 			}
 		}
         stage("build") {
             steps {
-                 sh  'mvn -Dmaven.test.skip=true site'
+                 sh  'mvn -Dmaven.test.skip=true surefire-report:report'
             }
         }
     }
