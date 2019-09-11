@@ -17,17 +17,8 @@ pipeline {
         always {
             archiveArtifacts "target/**/*"
             junit '**/surefire-reports/*.xml' 
-          
-             
+                       
          }  
         }
-		publishHTML(target:  [
-			allowMissing: false, 
-			alwaysLinkToLastBuild: false, 
-			keepAll: false, 
-			reportDir: 'site', 
-			reportFiles: 'surefire-report.html', 
-			reportName: 'HTML Report', 
-			reportTitles: 'HML Report'
-			])
+		
     }
