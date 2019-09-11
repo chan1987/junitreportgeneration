@@ -22,7 +22,7 @@ pipeline {
         always {
             archiveArtifacts "target/**/*"
             junit '**/surefire-reports/*.xml' 
-			slackUploadFile filePath: 'target/site/surefire-report.html', initialComment: 'report'
+			slackSend channel: 'junittesting general', color: 'Good', message: 'Welcome to jenkins Slack', teamDomain: 'junittesting', tokenCredentialId: 'jenkins-slack-integration'
 			
          }  
 		 
