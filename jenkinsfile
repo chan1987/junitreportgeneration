@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage("Test") {
 			steps {
-				sh  'echo "Do nothing" '
+				sh  'cd /var/lib/jenkins/workspace/junitreportgeneration/target/surefire-reports'
+				sh 'touch *.xml'
 			}
 		}
         stage("build") {
