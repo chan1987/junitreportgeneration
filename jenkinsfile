@@ -1,7 +1,7 @@
 node {
     def rootDir = pwd()
-    def example = load "${rootDir}/pipeline.Groovy"
+    def example = load "${rootDir}/pipeline.groovy"
     example.exampleMethod()
-	def notify = load "${rootDir}/notifyslack.Groovy"
+	def notify = load "${rootDir}/notifyslack.groovy"
     notify.call()
 }
