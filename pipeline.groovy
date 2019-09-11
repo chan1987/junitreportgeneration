@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def exampleMethod() {
+def exampleMethod () {
 pipeline {
 	agent any
 	stages {
