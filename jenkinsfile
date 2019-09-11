@@ -4,7 +4,7 @@ pipeline {
         stage("Test") {
 			steps {
 				
-				slackSend channel: 'junittesting', message: 'Starting'
+				slackSend channel: 'junittesting', message: 'Test Phase running'
 				sh 'mvn surefire:test surefire-report:report'
 				
 				//sh  'cd /var/lib/jenkins/workspace/junitreportgeneration/target/surefire-reports'
@@ -13,11 +13,11 @@ pipeline {
 		}
         stage("build") {
             steps {
-				slackSend channel: 'junittesting', message: 'Building'
+				slackSend channel: 'junittesting', message: 'Build Phase running'
                  sh  'mvn -Dmaven.test.skip=true surefire-report:report'
-				 sh  'cp /var/lib/jenkins/workspace/junitreportgeneration/target/site/surefire-report.html /var/lib/jenkins/workspace/junitreportgeneration/surefire-report.html'
+				 sh  'sudo cp /var/lib/jenkins/workspace/junitreportgeneration/target/site/surefire-report.html /var/lib/jenkins/workspace/junitreportgeneration/surefire-report.html'
 				 sh  'sudo chmod 777 /var/lib/jenkins/workspace/junitreportgeneration/surefire-report.html'
-				 sh 'ls -l /var/lib/jenkins/workspace/junitreportgeneration/surefire-report.html'
+				 sh  'ls -l /var/lib/jenkins/workspace/junitreportgeneration/surefire-report.html'
             }
 		}
 		stage("Slack notification") {
