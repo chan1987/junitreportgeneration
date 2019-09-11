@@ -1,18 +1,6 @@
 #!/usr/bin/env groovy
-
-import hudson.model.*
-import hudson.EnvVars
-import groovy.json.JsonSlurperClassic
-import groovy.json.JsonBuilder
-import groovy.json.JsonOutput
-import java.net.URL
-
-def exampleMethod () {
-
-	
-	pipeline {
-	agent any
-	stages {
+	node('master') {
+		stages {
 		stage("Test") {
 			steps {
 				slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
@@ -59,4 +47,4 @@ def exampleMethod () {
 		}
 	}
 }
-return this;
+
