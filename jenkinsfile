@@ -23,7 +23,7 @@ pipeline {
             archiveArtifacts "target/**/*"
             junit '**/surefire-reports/*.xml' 
 			slackUploadFile filePath: 'target/site/surefire-report.html', initialComment: 'report'
-			publishHTML (targe  [allowMissing: false,alwaysLinkToLastBuild: false,keepAll: false, reportDir: 'site',reportFiles: 'surefire-report.html',reportName: 'HTML Report',reportTitles: 'HML Report'] )
+			
          }  
 		 
         }	
