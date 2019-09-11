@@ -16,13 +16,16 @@ pipeline {
 				slackSend channel: 'junittesting', message: 'Building'
                  sh  'mvn -Dmaven.test.skip=true surefire-report:report'
             }
+			steps {
+				slackSend channel: 'junittesting general', color: 'Good', message: 'Welcome to jenkins Slack', teamDomain: 'junittesting', tokenCredentialId: 'jenkins-slack-integration'
+			}
         }
     }
     post {
         always {
             archiveArtifacts "target/**/*"
             junit '**/surefire-reports/*.xml' 
-			slackSend channel: 'junittesting general', color: 'Good', message: 'Welcome to jenkins Slack', teamDomain: 'junittesting', tokenCredentialId: 'jenkins-slack-integration'
+			
 			
          }  
 		 
