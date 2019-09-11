@@ -22,7 +22,7 @@ pipeline {
         always {
             archiveArtifacts "target/**/*"
             junit '**/surefire-reports/*.xml' 
-			slackUploadFile filePath: '\\target\\site\\surefire-report.html', initialComment: 'report'
+			slackUploadFile filePath: 'target/site/surefire-report.html', initialComment: 'report'
          }  
         }	
 }
