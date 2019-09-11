@@ -5,12 +5,12 @@ pipeline {
             steps {
                 sh 'cd /var/lib/jenkins/workspace/junitreportgeneration/target/surefire-reports/'
                 sh 'touch *.xml'
-                sh  'mvn surefire-report:report'
+				sh  'mvn install surefire-report:report'
             }
         }
         stage("build") {
             steps {
-                 sh  'mvn clean install -Dmaven.test.skip=true'
+                 sh  'mvn clean deploy -Dmaven.test.skip=true'
             }
         }
     }
@@ -18,7 +18,7 @@ pipeline {
         always {
             archiveArtifacts "target/**/*"
             junit '**/surefire-reports/*.xml' 
-            junit '**/site/*.html'
+            
              
          }  
         }
