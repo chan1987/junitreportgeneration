@@ -1,14 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage("TouchReports") {
-            steps {
-                sh 'cd /var/lib/jenkins/workspace/junitreportgeneration/target/surefire-reports/'
-                sh 'touch *.xml'
-				
-            }
-        }
-		stage("Test") {
+        stage("Test") {
 			steps {
 				sh  'mvn install surefire-report:report'
 			}
