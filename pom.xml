@@ -49,6 +49,7 @@
 		</systemProperties>
 </configuration>
         </plugin>
+          
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
@@ -64,7 +65,7 @@
                 <!--<configuration>-->
                     <!--<outputDirectory>C:\Users\ab66378\Desktop</outputDirectory>-->
                 <!--</configuration>-->
-            </plugin>
+            </plugin>         
             
         </plugins>
     </reporting>
