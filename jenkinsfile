@@ -1,7 +1,7 @@
 node {
 	checkout scm
     def example = load pwd() + '/pipeline.groovy'
-    example.call()
+    example.pipelinescript()
 	
 	def notify = load pwd() + '/notifyslack.groovy'
     notify.call()

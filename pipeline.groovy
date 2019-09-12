@@ -1,5 +1,5 @@
 class Example {
-	static def call () {
+	static def pipelinescript () {
 	node('master') {
 		stage("Test") {
 		 try {
@@ -58,6 +58,6 @@ class Example {
 		  
 		}
 	  }
+	  return this;
 	}
 }
-return this;
