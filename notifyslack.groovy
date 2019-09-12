@@ -8,7 +8,7 @@ import net.sf.json.JSONObject;
 import hudson.tasks.test.AbstractTestResultAction;
 import hudson.model.Actionable;
 
-def call(String buildStatus = 'STARTED', String channel = '#junittesting') {
+def call(String buildStatus = 'COMPLETED', String channel = '#junittesting') {
 
 
   // buildStatus of null means successfull
