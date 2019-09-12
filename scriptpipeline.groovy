@@ -31,21 +31,24 @@ class Example {
 		stage("Slack notification") {
 		 
 		 try {
+			 
 		   //slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#junittesting', color: 'good', message: 'Jenkins Build Completed', teamDomain: 'a1devopsconsulting', tokenCredentialId: 'slackunit', username: 'Chandrakanth'
-		  lastSuccess {
-		   archiveArtifacts "target/**/*"
-		   junit '**/surefire-reports/*.xml'
-		   slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-		   slackUploadFile channel: '#junittesting', credentialId: 'slackunit', filePath: '*.html', initialComment: 'Test Reports'
+			 lastSuccess {
+				
+				  archiveArtifacts "target/**/*"
+				 junit '**/surefire-reports/*.xml'
+				 slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+				 slackUploadFile channel: '#junittesting', credentialId: 'slackunit', filePath: '*.html', initialComment: 'Test Reports'
 		   }
+		   
 		   LastFailure {
-			 slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-			
-			  emailext (
-			  subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-			  body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
-			  recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+			   
+			   slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+			   emailext (
+				   subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+				   body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+				  <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+			  	  recipientProviders: [[$class: 'DevelopersRecipientProvider']]
 			   )
 		   }
 		  

@@ -20,8 +20,8 @@ pipeline {
 		}
 		stage("Slack notification") {
 			steps {
-				slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#junittesting', color: 'good', message: 'Jenkins Build Completed', teamDomain: 'a1devopsconsulting', tokenCredentialId: 'slackunit', username: 'Chandrakanth'
-
+				
+				sh 'echo "do nothing"'
 			}
 
 		}
