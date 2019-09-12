@@ -4,7 +4,9 @@ pipeline {
 		stage("Test") {
 			steps {
 				slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-				sh 'mvn surefire:test surefire-report:report'
+				sh 'mvn test'
+				sh 'mvn surefire-report:report-only'
+				
 				//sh  'cd /var/lib/jenkins/workspace/junitreportgeneration/target/surefire-reports'
 				//sh 'touch *.xml'
 			}
@@ -12,7 +14,7 @@ pipeline {
 		stage("build") {
 			steps {
 				//slackSend channel: 'junittesting', message: 'Build Phase running'
-				 sh  'mvn -Dmaven.test.skip=true surefire-report:report'
+				 sh  'mvn site -DgenerateReports=false'
 				 sh  'sudo cp $(pwd)/target/site/surefire-report.html $(pwd)/surefire-report.html'
 				 sh  'sudo chmod 777 $(pwd)/surefire-report.html'
 				 sh  'ls -l $(pwd)/surefire-report.html'
