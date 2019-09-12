@@ -7,7 +7,7 @@ pipeline {
 			
 				sh 'mvn -Dmaven.test.failure.ignore=true surefire-report:report'
 				
-				//sh  'cd /var/lib/jenkins/workspace/junitreportgeneration/target/surefire-reports'
+				//sh 'cd /var/lib/jenkins/workspace/junitreportgeneration/target/surefire-reports'
 				//sh 'touch *.xml'
 			}
 		}
