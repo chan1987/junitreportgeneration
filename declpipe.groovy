@@ -5,7 +5,7 @@ pipeline {
 			steps {
 				slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
 			
-				sh 'mvn --Dmaven.test.failure.ignore=true surefire-report:report'
+				sh 'mvn -Dmaven.test.failure.ignore=true surefire-report:report'
 				
 				//sh  'cd /var/lib/jenkins/workspace/junitreportgeneration/target/surefire-reports'
 				//sh 'touch *.xml'
