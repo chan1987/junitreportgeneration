@@ -31,7 +31,7 @@ class Example {
 		stage("Slack notification") {
 		 
 		 try {
-		  slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#junittesting', color: 'good', message: 'Jenkins Build Completed', teamDomain: 'a1devopsconsulting', tokenCredentialId: 'slackunit', username: 'Chandrakanth'
+		  //slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#junittesting', color: 'good', message: 'Jenkins Build Completed', teamDomain: 'a1devopsconsulting', tokenCredentialId: 'slackunit', username: 'Chandrakanth'
 		  lastSuccess {
 		   archiveArtifacts "target/**/*"
 		   junit '**/surefire-reports/*.xml'
