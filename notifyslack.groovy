@@ -23,7 +23,7 @@ def call(String buildStatus = 'STARTED', String channel = '#junittesting') {
   def title = "${env.JOB_NAME} Build: ${env.BUILD_NUMBER}"
   def title_link = "${env.RUN_DISPLAY_URL}"
   def branchName = "${env.BRANCH_NAME}"
-  def reportfile = "${env.}"
+  
 
   def commit = sh(returnStdout: true, script: 'git rev-parse HEAD')
   def author = sh(returnStdout: true, script: "git --no-pager show -s --format='%an'").trim()
