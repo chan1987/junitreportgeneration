@@ -30,6 +30,7 @@ public class MyUtilsTest {
 	 public void test_add() {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		assertEquals(16, MyUtils.add(7, 9));
 =======
 		assertEquals(16, MyUtils.add(7, 5));
@@ -37,6 +38,9 @@ public class MyUtilsTest {
 =======
 		assertEquals(10, MyUtils.add(7, 9));
 >>>>>>> 3ddd368 (7,9 added v9.0.1)
+=======
+		assertEquals(16, MyUtils.add(7, 9));
+>>>>>>> 7798ef3 (success test)
 	}
 
 	 @Test
