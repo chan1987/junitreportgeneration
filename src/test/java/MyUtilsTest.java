@@ -28,7 +28,11 @@ public class MyUtilsTest {
 
 	 @Test
 	 public void test_add() {
+<<<<<<< HEAD
 		assertEquals(16, MyUtils.add(7, 9));
+=======
+		assertEquals(16, MyUtils.add(7, 5));
+>>>>>>> 6cede9ca9d2bf2a7b96f6827bbfb91d695b3b772
 	}
 
 	 @Test
