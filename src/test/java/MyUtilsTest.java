@@ -31,6 +31,7 @@ public class MyUtilsTest {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		assertEquals(16, MyUtils.add(7, 9));
 =======
 		assertEquals(16, MyUtils.add(7, 5));
@@ -41,6 +42,9 @@ public class MyUtilsTest {
 =======
 		assertEquals(16, MyUtils.add(7, 9));
 >>>>>>> 7798ef3 (success test)
+=======
+		assertEquals(16, MyUtils.add(7, 5));
+>>>>>>> 22980c6 (Tan commit)
 	}
 
 	 @Test
