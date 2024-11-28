@@ -1,7 +1,7 @@
 class Example {
 	static def pipelinescript () {
 	node('master') {
-		stage("Test") {
+		stage("Stage1") {
 		 try {
 		  slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
 		  sh 'mvn surefire:test surefire-report:report'
@@ -9,11 +9,11 @@ class Example {
 		  //sh 'touch *.xml'
 		 }
 		 catch (exc) {
-		  echo 'something failed'
+		  echo 'program failed'
 		  throw exc
 		 }
 		}  
-		stage("build") {
+		stage("build stage") {
 		 try {
 		  //slackSend channel: 'junittesting', message: 'Build Phase running'
 		   sh  'mvn -Dmaven.test.skip=true surefire-report:report'
@@ -28,7 +28,7 @@ class Example {
 		
 		}
 	  
-		stage("Slack notification") {
+		stage("Slack notification stage") {
 		 
 		 try {
 			 
